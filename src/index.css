@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: #ffffff;
+        --text: #000000;
+        --subtitle: #666666;
+        --card: #cccccc;
+        --border: #aaaaaa;
+        --primary: blue;
+        --secondary: purple;
+
+        --focus-border: #99999999;
+        --separator-border: #66666666;
+    }
+
+    :root[class~="dark"] {
+        --background: #000000;
+        --text: #ffffff;
+        --subtitle: #999999;
+        --card: #333333;
+        --border: #666666;
+        --primary: blue;
+        --secondary: purple;
+    }
+}
+
+body {
+    background-color: var(--background);
+}
+
+.PhoneInputInput {
+    color: var(--text);
+    background-color: var(--background);
+    outline: none;
+}
+
+.PhoneInputCountrySelect {
+    color: var(--text);
+    background-color: var(--background);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #666666;
+    border-radius: 20px;
+    border: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #66666666;
+    border-radius: 20px;
+    border: transparent;
+}

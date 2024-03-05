@@ -1,2 +1,3 @@
-# place4pals-web
-Vite React SPA
+# place4pals-template-web
+
+Template for Vite React SPA
