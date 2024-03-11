@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as Auth from 'aws-amplify/auth';
-import { useGlobalStore } from '#src/utils';
+import { styles, useGlobalStore } from '#src/utils';
 
 export const Forgot = () => {
     const loading = useGlobalStore(state => state.loading);
@@ -28,13 +28,13 @@ export const Forgot = () => {
     }
 
     return (
-        <div className="max-w-screen-sm m-auto flex flex-col gap-4 bg-card p-5 sm:p-10 rounded-xl shadow-lg">
-            <form onSubmit={sendResetLink} className="flex flex-col gap-4 mb-8">
+        <div className={`${styles.container}`}>
+            <form onSubmit={sendResetLink} className={`${styles.form}`}>
                 <div className='font-header text-center'>Forgot your password?</div>
-                {success && <div className='bg-successBackground border border-successBorder p-2 rounded-xl'>{success}</div>}
-                {error && <div className='bg-errorBackground border border-errorBorder p-2 rounded-xl'>{error}</div>}
-                <input className="p-2 rounded-lg bg-background" name="email" type="text" placeholder='Email address' />
-                <button className="bg-primary text-white p-2 rounded-lg hover:opacity-50" disabled={loading}>Send link to reset</button>
+                {success && <div className={`${styles.success}`}>{success}</div>}
+                {error && <div className={`${styles.error}`}>{error}</div>}
+                <input className={`${styles.input}`} name="email" type="text" placeholder='Email address' />
+                <button className={`bg-primary text-white ${styles.button}`} disabled={loading}>Send link to reset</button>
             </form>
         </div>
     )

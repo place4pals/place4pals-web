@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as Auth from 'aws-amplify/auth';;
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useGlobalStore } from '#src/utils';
+import { styles, useGlobalStore } from '#src/utils';
 
 export const Reset = () => {
     const loading = useGlobalStore(state => state.loading);
@@ -40,7 +40,7 @@ export const Reset = () => {
             await Auth.signIn({ username, password });
             const attributes = (await Auth.fetchAuthSession()).tokens?.idToken?.payload
             setAuthenticated(attributes?.sub);
-            navigate('/dashboard');
+            navigate('/');
         }
         catch (err) {
             setLoading(false);
@@ -49,14 +49,14 @@ export const Reset = () => {
     }
 
     return (
-        <div className="max-w-screen-sm m-auto flex flex-col gap-4 bg-card p-5 sm:p-10 rounded-xl shadow-lg">
-            <form onSubmit={resetPassword} className="flex flex-col gap-4 mb-8">
+        <div className={`${styles.container}`}>
+            <form onSubmit={resetPassword} className={`${styles.form}`}>
                 <div className='font-header text-center'>Reset your password</div>
-                {success && <div className='bg-successBackground border border-successBorder p-2 rounded-xl'>{success}</div>}
-                {error && <div className='bg-errorBackground border border-errorBorder p-2 rounded-xl'>{error}</div>}
-                <input className="p-2 rounded-lg bg-background" name="password" type="password" placeholder='Password' />
-                <input className="p-2 rounded-lg bg-background" name="confirm" type="password" placeholder='Confirm password' />
-                <button className="bg-primary text-white p-2 rounded-lg hover:opacity-50" disabled={loading}>Reset password & log in</button>
+                {success && <div className={`${styles.success}`}>{success}</div>}
+                {error && <div className={`${styles.error}`}>{error}</div>}
+                <input className={`${styles.input}`} name="password" type="password" placeholder='Password' />
+                <input className={`${styles.input}`} name="confirm" type="password" placeholder='Confirm password' />
+                <button className={`bg-primary text-white ${styles.button}`} disabled={loading}>Reset password & log in</button>
             </form>
         </div>
     )

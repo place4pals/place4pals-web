@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as Auth from 'aws-amplify/auth';;
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useGlobalStore } from '#src/utils';
+import { styles, useGlobalStore } from '#src/utils';
 import { useQueryClient } from '@tanstack/react-query';
 import { usePostHog } from 'posthog-js/react';
 
@@ -49,7 +49,7 @@ export const Login = () => {
                 navigate(`/verify/${location.search}`);
             }
             else {
-                navigate('/dashboard');
+                navigate('/');
             }
 
             const hasuraClaims = JSON.parse(attributes?.['https://hasura.io/jwt/claims']);
@@ -66,12 +66,12 @@ export const Login = () => {
         }
     }
 
-    return (<div className="flex flex-col gap-4 bg-card p-5 rounded-xl">
-        <form onSubmit={login} className="flex flex-col gap-4">
-            <div className='font-header text-center text-2xl'>Welcome back!</div>
-            {error && <div className='bg-errorBackground border border-errorBorder p-2 rounded-md'>{error}</div>}
-            <input className="p-2 rounded-md bg-background" name="email" type="text" placeholder='Email address' />
-            <input className="p-2 rounded-md bg-background" name="password" type="password" placeholder='Password' />
+    return (<div className={`${styles.container}`}>
+        <form onSubmit={login} className={`${styles.form}`}>
+            <div className='font-header text-center text-xl'>Welcome back!</div>
+            {error && <div className={`${styles.error}`}>{error}</div>}
+            <input className={`${styles.input}`} name="email" type="text" placeholder='Email address' />
+            <input className={`${styles.input}`} name="password" type="password" placeholder='Password' />
             <div className='flex flex-row justify-between gap-2'>
                 <Link className='underline text-sm sm:text-base hover:opacity-50' to="/forgot">Forgot your password?</Link>
                 <div className='flex flex-row gap-2 text-sm sm:text-base'>
@@ -79,9 +79,9 @@ export const Login = () => {
                     <label htmlFor='remember'>Remember me</label>
                 </div>
             </div>
-            <button className="bg-secondary text-[white] p-2 rounded-md hover:opacity-50" disabled={loading}>Log in</button>
+            <button className={`${styles.button} bg-secondary text-[white]`} disabled={loading}>Log in</button>
+            <div className='font-header text-center'>Don't have an account?</div>
+            <Link to="/signup" className={`${styles.button} text-center bg-primary text-[white]`}>Sign up for free</Link>
         </form>
-        <div className='font-header text-center'>Don't have an account?</div>
-        <Link to="/signup" className="text-center bg-primary text-[white] p-2 rounded-md hover:opacity-50">Sign up for free</Link>
     </div>)
 }

@@ -1,3 +1,2 @@
-# place4pals-template-web
-
+# heythisischris-template-web
 Template for Vite React SPA

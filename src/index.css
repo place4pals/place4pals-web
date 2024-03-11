@@ -7,10 +7,11 @@
         --background: #ffffff;
         --text: #000000;
         --subtitle: #666666;
-        --card: #cccccc;
+        --shadow: #666666;
+        --card: #eeeeee;
         --border: #aaaaaa;
-        --primary: blue;
-        --secondary: purple;
+        --primary: #6363ff;
+        --secondary: #892889;
 
         --focus-border: #99999999;
         --separator-border: #66666666;
@@ -20,7 +21,8 @@
         --background: #000000;
         --text: #ffffff;
         --subtitle: #999999;
-        --card: #333333;
+        --shadow: #eeeeee;
+        --card: #2a2a2a;
         --border: #666666;
         --primary: blue;
         --secondary: purple;
@@ -29,6 +31,7 @@
 
 body {
     background-color: var(--background);
+    overflow-y: scroll;
 }
 
 .PhoneInputInput {

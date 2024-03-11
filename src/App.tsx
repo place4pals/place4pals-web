@@ -1,7 +1,7 @@
 import { Amplify } from 'aws-amplify';
 import * as Auth from 'aws-amplify/auth'
 import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
-import { Dashboard, Forgot, Home, Login, Payment, Privacy, Reset, Settings, Signup, Terms, Verify } from '#src/routes';
+import { Chat, Forgot, Home, Login, Pools, Post, Privacy, Reset, Settings, Signup, Terms, Verify } from '#src/routes';
 import { Navigation } from '#src/components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PostHogProvider } from 'posthog-js/react'
@@ -31,7 +31,10 @@ Amplify.configure({
 }, {
   API: {
     GraphQL: {
-      headers: async () => ({ Authorization: `Bearer ${(await Auth.fetchAuthSession()).tokens?.idToken?.toString()}` }),
+      headers: async () => {
+        const jwtToken = (await Auth.fetchAuthSession()).tokens?.idToken?.toString();
+        return { ...(jwtToken && { Authorization: `Bearer ${jwtToken}` }) };
+      },
     },
     REST: {
       headers: async ({ apiName }) => apiName === 'auth' ? { Authorization: `Bearer ${(await Auth.fetchAuthSession()).tokens?.idToken?.toString()}` } : { 'X-Api-Key': '1' }
@@ -52,13 +55,14 @@ const router = createBrowserRouter([
       { path: 'verify', element: <Verify /> },
       { path: 'terms', element: <Terms /> },
       { path: 'privacy', element: <Privacy /> },
-      { path: 'dashboard', element: <Dashboard /> },
-      { path: 'payment', element: <Payment /> },
       { path: 'settings', element: <Settings /> },
+      { path: 'posts/:postId', element: <Post /> },
+      { path: 'pools', element: <Pools /> },
+      { path: 'chat', element: <Chat /> },
     ],
     errorElement: <>
       <Navigation />
-      <Link to='/dashboard' className='absolute top-[calc(50%_-_100px)] left-[calc(50%_-_200px)] text-text text-center w-[400px] hover:opacity-50'>
+      <Link to='/' className='absolute top-[calc(50%_-_100px)] left-[calc(50%_-_200px)] text-text text-center w-[400px] hover:opacity-50'>
         404 - Page not found!
       </Link>
     </>

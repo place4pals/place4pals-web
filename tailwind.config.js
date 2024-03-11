@@ -16,6 +16,7 @@ export default {
         subtitle: 'var(--subtitle)',
         card: 'var(--card)',
         border: 'var(--border)',
+        shadow: 'var(--shadow)',
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
         errorBackground: '#ff000011',

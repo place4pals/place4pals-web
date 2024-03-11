@@ -6,7 +6,7 @@ export const useGlobalStore = create(
         (set) => ({
             loading: false,
             setLoading: (value) => set(() => ({ loading: value })),
-            darkMode: true,
+            darkMode: false,
             setDarkMode: (value) => set(() => ({ darkMode: value })),
             authenticated: false,
             setAuthenticated: (value) => set(() => ({ authenticated: value })),

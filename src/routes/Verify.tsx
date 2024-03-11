@@ -11,11 +11,10 @@ export const Verify = () => {
     useEffect(() => {
         const async = async () => {
             if (location.search) {
-                try {
-                    await Auth.fetchAuthSession({ forceRefresh: true });
-                }
-                catch (err) {
+                const response = await Auth.fetchAuthSession({ forceRefresh: true });
+                if (!response?.userSub) {
                     navigate(`/login${location.search}`);
+                    return;
                 }
                 const params = new URLSearchParams(location.search);
                 const type = params.get('type');
@@ -28,7 +27,7 @@ export const Verify = () => {
                     variables: { value: attributes?.[type] }
                 });
                 alert(`You've successfully verified your new ${type?.replace('_', ' ')}`);
-                navigate('/dashboard');
+                navigate('/');
             }
         }
         async();
