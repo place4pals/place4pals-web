@@ -49,7 +49,7 @@ export const Posts = () => {
 
     return (
         <>
-            <div className={`flex flex-col justify-start gap-4 relative h-[calc(100vh_-_140px)] sm:h-[calc(100vh_-_70px)]`}>
+            <div className={`flex flex-col justify-start gap-4 max-w-screen-lg mx-auto relative max-h-[calc(100vh_-_200px)]`}>
                 <div id='virtualScroll' ref={postsRef} onScroll={handleScroll} className={`overflow-y-scroll flex flex-col gap-2 `}>
                     <div style={{ height: rowVirtualizer.getTotalSize(), width: '100%', position: 'relative' }}>
                         <div style={{

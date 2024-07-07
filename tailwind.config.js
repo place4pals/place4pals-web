@@ -24,7 +24,8 @@ export default {
         successBackground: '#00ff0011',
         successBorder: '#00ff00',
         warningBackground: '#ffff0011',
-        warningBorder: '#ffff00'
+        warningBorder: '#ffff00',
+        blue: '#143fcd',
       },
     },
   },
